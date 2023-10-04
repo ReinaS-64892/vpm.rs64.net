@@ -105,30 +105,27 @@ jobs:
           InputStr: ${{ steps.vpmdotjson.outputs.result }}
           AddVersion: ${{ steps.NewJson.outputs.result }}
         with:
+          result-encoding: string
           script: |
             const {InputStr ,AddVersion} = process.env
 
             let jsonObj = JSON.parse(InputStr);
-
             let addJsonObj = JSON.parse(AddVersion);
-            let version = addJsonObj.version
 
-            jsonObj.packages.net.rs64.tex-trans-tool.versions[version] = addJsonObj
+            jsonObj.packages["net.rs64.tex-trans-tool"].versions[addJsonObj.version] = addJsonObj
 
             return JSON.stringify(jsonObj)
 
+      - name: Write Json
+        run: |
+          echo ${{ steps.AddVersion.outputs.result}} >>  ./VpmRepo/vpm.json
       - name: Debug
         run: |
-          echo ${{ steps.AddVersion.outputs.result }}
-      # - name: replace version
-      #   run: |
-      #    cd ./VpmRepo
-      #    tempjson='mktemp'
-      #    withoutvtagstr=`echo ${{ github.event.inputs.tag }} | sed -e "s/^v//"`
-      #    jq ".version|=\"${withoutvtagstr}\"" ./package.json > $tempjson
-      #    mv $tempjson ./package.json
+          cat ./VpmRepo/vpm.json
+
       # - name: git commit
       #   run: |
+      #     cd ./VpmRepo
       #     git config user.name  "GitHub Action"
       #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       #     git add ./vpm.json
