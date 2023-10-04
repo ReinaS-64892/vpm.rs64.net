@@ -18,6 +18,7 @@ jobs:
         with:
           repo: ReinaS-64892/TexTransTool
           tag: ${{ github.event.inputs.tag }}
+
       - name: Debug
         run: |
           pwd
@@ -42,6 +43,7 @@ jobs:
             }
 
             return TTTZipURL
+
       - name: GetPackege.json
         uses: actions/checkout@v4
         with:
@@ -50,6 +52,7 @@ jobs:
           ref: ${{ github.event.inputs.tag }}
           sparse-checkout: |
             package.json
+
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
@@ -61,12 +64,19 @@ jobs:
           ls -alh
           ls -alh ./TTT
           ls -alh ./VpmRepo
+
       - name: moveVar
         id: packagedotjson
-        run: cat ./TTT/package.json >> "$GITHUB_OUTPUT"
+        run: |
+         Temp=`cat ./TTT/package.json`
+         $Temp >> "$GITHUB_OUTPUT"
+
       - name: moveVar
         id: vpmdotjson
-        run: cat ./VpmRepo/vpm.json >> "$GITHUB_OUTPUT"
+        run: |
+          Temp=`cat ./VpmRepo/vpm.json`
+          Temp >> "$GITHUB_OUTPUT"
+
       - name: GenereateURLReplasedJson
         id: NewJson
         uses: actions/github-script@v6
