@@ -42,7 +42,9 @@ jobs:
               }
             }
 
-            return TTTZipURL
+            TTTZipURL.
+
+            return TTTZipURL.substring(1,TTTZipURL.length - 1)
 
       - name: GetPackege.json
         uses: actions/checkout@v4
