@@ -49,7 +49,7 @@ jobs:
           path: ./TTT
           ref: ${{ github.event.inputs.tag }}
           sparse-checkout: |
-            /package.json
+            package.json
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
