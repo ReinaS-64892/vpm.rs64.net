@@ -25,10 +25,9 @@ jobs:
       - uses: actions/github-script@v6
         env:
           InputStr: ${{ steps.RereaseData.outputs.assets }}
-          TagStr: ${{ github.event.inputs.tag }}
         with:
           script: |
-            const {InputStr , TagStr} = process.env
+            const {InputStr } = process.env
 
             let packageDotJsonURL = null;
             let TTTZipJsonURL = null;
@@ -38,7 +37,7 @@ jobs:
               {
                 packageDotJsonURL = asset.browser_download_url;
               }
-              else if (asset.name == ( "tex-trans-tool-${TagStr}\.zip"))
+              else if (asset.name.startsWith("tex-trans-tool-"))
               {
                 TTTZipJsonURL = asset.browser_download_url;
               }
