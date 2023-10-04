@@ -38,11 +38,9 @@ jobs:
             {
               if (asset.name.startsWith("tex-trans-tool-"))
               {
-                TTTZipURL = asset.browser_download_url.substring(1, asset.browser_download_url.length - 1)
+                TTTZipURL = asset.browser_download_url
               }
             }
-
-            TTTZipURL.
 
             return TTTZipURL
 
@@ -91,6 +89,8 @@ jobs:
             const {InputStr ,ReplaseURL } = process.env
 
             let jsonObj = JSON.parse(InputStr);
+
+            var subStr = ReplaseURL.substring(1, ReplaseURL.length - 1)
 
             console.log(ReplaseURL)
 
