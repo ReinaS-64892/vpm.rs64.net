@@ -34,7 +34,7 @@ jobs:
 
             for (const asset of InputStr){
               console.log(asset.name)
-              if(asset.name == package.json)
+              if(asset.name.startWith("package"))
               {
                 packageDotJsonURL = asset.browser_download_url;
               }
