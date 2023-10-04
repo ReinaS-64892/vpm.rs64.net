@@ -32,7 +32,7 @@ jobs:
             let packageDotJsonURL = null;
             let TTTZipJsonURL = null;
 
-            for (const asset of JSON.parse((InputStr)){
+            for (const asset of JSON.parse(InputStr)){
               console.log(asset.name)
 
             }
