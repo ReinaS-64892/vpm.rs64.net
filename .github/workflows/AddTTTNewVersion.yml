@@ -63,6 +63,7 @@ jobs:
           ls -alh ./VpmRepo
       - name: moveVar
         run: |
+          cat ./TTT/package.json
           packagedotjson = `cat ./TTT/package.json`
           vpmdotjson = `cat ./VpmRepo/vpm.json`
       - name: GenereateURLReplasedJson
