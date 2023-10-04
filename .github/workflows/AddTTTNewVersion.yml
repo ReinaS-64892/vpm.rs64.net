@@ -52,7 +52,7 @@ jobs:
 
             var https = require('https');
 
-            var  https.get(packageDotJsonURL , (res) =>{
+            https.get(packageDotJsonURL , (res) =>{
               res.on('data', (chunk) => {console.log(chunk)} )
               res.on('end' () => {        })
             });
