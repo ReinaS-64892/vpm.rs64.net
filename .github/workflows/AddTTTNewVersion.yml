@@ -118,6 +118,7 @@ jobs:
 
       - name: Write Json
         run: |
+          echo ${{ steps.AddVersion.outputs.result}}
           echo ${{ steps.AddVersion.outputs.result}} >>  ./VpmRepo/vpm.json
       - name: Debug
         run: |
