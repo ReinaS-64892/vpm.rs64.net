@@ -92,9 +92,9 @@ jobs:
 
             var subStr = ReplaseURL.substring(1, ReplaseURL.length - 1)
 
-            console.log(ReplaseURL)
+            console.log(subStr)
 
-            jsonObj.url = ReplaseURL;
+            jsonObj.url = subStr;
 
             return JSON.stringify(jsonObj)
 
