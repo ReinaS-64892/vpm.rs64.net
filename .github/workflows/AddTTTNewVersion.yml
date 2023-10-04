@@ -61,6 +61,49 @@ jobs:
           ls -alh
           ls -alh ./TTT
           ls -alh ./VpmRepo
+            - name: Get TTTZipURL
+      - name: moveVar
+        run: |
+          packagedotjson = ${cat ./TTT/package.json}
+          vpmdotjson = ${cat ./VpmRepo/vpm.json}
+      - name: GenereateURLReplasedJson
+        id: NewJson
+        uses: actions/github-script@v6
+        env:
+          InputStr: $packagedotjson
+          ReplaseURL: ${{ steps.TTTZipURL.outputs.result }}
+        with:
+          script: |
+            const {InputStr ,ReplaseURL } = process.env
+
+            let jsonObj = JSON.parse(InputStr);
+
+            jsonObj.url = ReplaseURL;
+
+            return JSON.stringify(jsonObj)
+
+      - name: GenereateURLReplasedJson
+        id: AddVersion
+        uses: actions/github-script@v6
+        env:
+          InputStr: $vpmdotjson
+          AddVersion: ${{ steps.NewJson.outputs.result }}
+        with:
+          script: |
+            const {InputStr ,AddVersion} = process.env
+
+            let jsonObj = JSON.parse(InputStr);
+
+            let addJsonObj = JSON.parse(AddVersion);
+            let version = addJsonObj.version
+
+            jsonObj.packages.net.rs64.tex-trans-tool.versions[version] = addJsonObj
+
+            return JSON.stringify(jsonObj)
+
+      - name: Debug
+        run: |
+          echo ${{ steps.TTTZipURL.outputs.result }}
       # - name: replace version
       #   run: |
       #    cd ./VpmRepo
