@@ -103,7 +103,7 @@ jobs:
 
       - name: Debug
         run: |
-          echo ${{ steps.TTTZipURL.outputs.result }}
+          echo ${{ steps.AddVersion.outputs.result }}
       # - name: replace version
       #   run: |
       #    cd ./VpmRepo
