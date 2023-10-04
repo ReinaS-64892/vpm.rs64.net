@@ -105,7 +105,6 @@ jobs:
           InputStr: ${{ steps.vpmdotjson.outputs.result }}
           AddVersion: ${{ steps.NewJson.outputs.result }}
         with:
-          result-encoding: string
           script: |
             const {InputStr ,AddVersion} = process.env
 
