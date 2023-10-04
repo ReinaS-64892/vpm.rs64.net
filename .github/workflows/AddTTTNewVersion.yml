@@ -50,6 +50,12 @@ jobs:
             console.log(packageDotJsonURL)
             console.log(TTTZipJsonURL)
 
+            var https = require('https');
+
+            var  https.get(packageDotJsonURL , (res) =>{
+              res.on('data', (chunk) => {console.log(chunk)} )
+              res.on('end' () => {        })
+            });
 
 
 
