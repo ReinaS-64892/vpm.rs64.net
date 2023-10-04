@@ -34,15 +34,8 @@ jobs:
 
             for (const asset of JSON.parse(InputStr)){
               console.log(asset.name)
-              const nameStr = asset.name.toString()
-              if(nameStr.startWith("package"))
-              {
-                packageDotJsonURL = asset.browser_download_url;
-              }
-              else if (nameStr.startsWith("tex-trans-tool-"))
-              {
-                TTTZipJsonURL = asset.browser_download_url;
-              }
+              console.log(typeof asset.name)
+
 
             }
 
