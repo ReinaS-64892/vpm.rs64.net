@@ -61,7 +61,6 @@ jobs:
           ls -alh
           ls -alh ./TTT
           ls -alh ./VpmRepo
-            - name: Get TTTZipURL
       - name: moveVar
         run: |
           packagedotjson = ${cat ./TTT/package.json}
