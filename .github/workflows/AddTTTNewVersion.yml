@@ -6,7 +6,6 @@ on:
         type: string
         required: true
 
-
 jobs:
   add-ttt-new-version:
     runs-on: ubuntu-latest
@@ -23,9 +22,16 @@ jobs:
         run: |
           pwd
           ls -alh
-          cat  ${{ steps.RereaseData.outputs.assets }}
-      - name: GetPackege.json
-        run: wget ${{ steps.RereaseData.outputs.assets }}
+      - uses: actions/github-script@v6
+        env:
+          InputStr: ${{ steps.RereaseData.outputs.assets }}
+        with:
+          script: |
+            const {InputStr} = process.env
+            console.log(InputStr)
+
+      # - name: GetPackege.json
+      #   run: wget ${{ steps.RereaseData.outputs.assets }}
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
