@@ -22,51 +22,44 @@ jobs:
         run: |
           pwd
           ls -alh
-      - uses: actions/github-script@v6
+      - name: Get TTTZipURL
+        id: TTTZipURL
+        uses: actions/github-script@v6
         env:
           InputStr: ${{ steps.RereaseData.outputs.assets }}
         with:
           script: |
             const {InputStr } = process.env
 
-            let packageDotJsonURL = null;
-            let TTTZipJsonURL = null;
+            let TTTZipURL = null;
 
             for (const asset of JSON.parse(InputStr))
             {
-              console.log(asset.name)
-              if(asset.name == "package.json")
+              if (asset.name.startsWith("tex-trans-tool-"))
               {
-                packageDotJsonURL = asset.browser_download_url;
+                TTTZipURL = asset.browser_download_url
               }
-              else if (asset.name.startsWith("tex-trans-tool-"))
-              {
-                TTTZipJsonURL = asset.browser_download_url
-              }
-
             }
 
-
-            console.log(packageDotJsonURL)
-            console.log(TTTZipJsonURL)
-
-
-            var webclient = require("request");
-
-            webclient.get({  url: packageDotJsonURL,}, function (error, response, body) {  console.log(body);});
-
-
-
-      # - name: GetPackege.json
-      #   run: wget ${{ steps.RereaseData.outputs.assets }}
+            retune TTTZipURL
+      - name: GetPackege.json
+        uses: actions/checkout@v4
+        with:
+          repository: ReinaS-64892/TexTransTool
+          path: ./TTT
+          ref: ${{ github.event.inputs.tag }}
+          sparse-checkout: ./package.json
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
           path: ./VpmRepo
       - name: Debug
         run: |
+          cat ${{ steps.TTTZipURL.outputs.result }}
           pwd
           ls -alh
+          ls -alh ./TTT
+          ls -alh ./VpmRepo
       # - name: replace version
       #   run: |
       #    cd ./VpmRepo
