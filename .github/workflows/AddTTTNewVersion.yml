@@ -34,13 +34,16 @@ jobs:
 
             for (const asset of JSON.parse(InputStr)){
               console.log(asset.name)
-              console.log(typeof asset.name)
+              if(asset.name == "package.json")
+              {
+                packageDotJsonURL = asset.browser_download_url;
+              }
 
 
             }
 
             console.log(packageDotJsonURL)
-            console.log(TTTZipJsonURL)
+            //console.log(TTTZipJsonURL)
 
 
 
