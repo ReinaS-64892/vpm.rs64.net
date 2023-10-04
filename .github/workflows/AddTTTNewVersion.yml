@@ -84,6 +84,7 @@ jobs:
           InputStr: ${{ steps.packagedotjson.outputs.result }}
           ReplaseURL: ${{ steps.TTTZipURL.outputs.result }}
         with:
+          result-encoding: string
           script: |
             const {InputStr ,ReplaseURL } = process.env
 
