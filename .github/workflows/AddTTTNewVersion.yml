@@ -27,13 +27,13 @@ jobs:
           InputStr: ${{ steps.RereaseData.outputs.assets }}
         with:
           script: |
-            var https = require('https');
             const {InputStr } = process.env
 
             let packageDotJsonURL = null;
             let TTTZipJsonURL = null;
 
             for (const asset of InputStr){
+              console.log(asset.name)
               if(asset.name == package.json)
               {
                 packageDotJsonURL = asset.browser_download_url;
@@ -43,6 +43,8 @@ jobs:
                 TTTZipJsonURL = asset.browser_download_url;
               }
             }
+
+            var https = require('https');
 
             var  https.get(packageDotJsonURL , (res) =>{
               let data = '';
