@@ -90,6 +90,8 @@ jobs:
 
             let jsonObj = JSON.parse(InputStr);
 
+            console.log(ReplaseURL)
+
             jsonObj.url = ReplaseURL;
 
             return JSON.stringify(jsonObj)
