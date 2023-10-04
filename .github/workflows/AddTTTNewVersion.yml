@@ -38,7 +38,7 @@ jobs:
               {
                 packageDotJsonURL = asset.browser_download_url;
               }
-              else if (asset.name == ( "tex-trans-tool-${TagStr}.zip"))
+              else if (asset.name == ( "tex-trans-tool-${TagStr}\.zip"))
               {
                 TTTZipJsonURL = asset.browser_download_url;
               }
