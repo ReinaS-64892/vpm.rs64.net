@@ -62,14 +62,16 @@ jobs:
           ls -alh ./TTT
           ls -alh ./VpmRepo
       - name: moveVar
-        run: |
-          packagedotjson=`cat ./TTT/package.json`
-          vpmdotjson=`cat ./VpmRepo/vpm.json`
+        id: packagedotjson
+        run: cat ./TTT/package.json >> "$GITHUB_OUTPUT"
+      - name: moveVar
+        id: vpmdotjson
+        run: cat ./VpmRepo/vpm.json >> "$GITHUB_OUTPUT"
       - name: GenereateURLReplasedJson
         id: NewJson
         uses: actions/github-script@v6
         env:
-          InputStr: ${packagedotjson}
+          InputStr: ${{ steps.packagedotjson.outputs.result }}
           ReplaseURL: ${{ steps.TTTZipURL.outputs.result }}
         with:
           script: |
@@ -85,7 +87,7 @@ jobs:
         id: AddVersion
         uses: actions/github-script@v6
         env:
-          InputStr: ${vpmdotjson}
+          InputStr: ${{ steps.vpmdotjson.outputs.result }}
           AddVersion: ${{ steps.NewJson.outputs.result }}
         with:
           script: |
