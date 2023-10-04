@@ -69,13 +69,13 @@ jobs:
         id: packagedotjson
         run: |
          Temp=`cat ./TTT/package.json`
-         echo $Temp >> "$GITHUB_OUTPUT"
+         echo "{result}={${Temp}} >> "$GITHUB_OUTPUT"
 
       - name: moveVar
         id: vpmdotjson
         run: |
           Temp=`cat ./VpmRepo/vpm.json`
-          echo $Temp >> "$GITHUB_OUTPUT"
+          echo "{result}={${Temp}}" >> "$GITHUB_OUTPUT"
 
       - name: GenereateURLReplasedJson
         id: NewJson
