@@ -38,14 +38,14 @@ jobs:
               {
                 packageDotJsonURL = asset.browser_download_url;
               }
+              else if(String.prototype.startsWith(asset.name , "tex-trans-tool-"))
 
 
             }
 
-            console.log(String.prototype.startsWith);
 
             console.log(packageDotJsonURL)
-            //console.log(TTTZipJsonURL)
+            console.log(TTTZipJsonURL)
 
 
 
