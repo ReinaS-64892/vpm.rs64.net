@@ -27,6 +27,7 @@ jobs:
           InputStr: ${{ steps.RereaseData.outputs.assets }}
         with:
           script: |
+            var https = require('https');
             const {InputStr } = process.env
 
             let packageDotJsonURL = null;
@@ -42,8 +43,6 @@ jobs:
                 TTTZipJsonURL = asset.browser_download_url;
               }
             }
-
-            var https = require('https');
 
             var  https.get(packageDotJsonURL , (res) =>{
               let data = '';
