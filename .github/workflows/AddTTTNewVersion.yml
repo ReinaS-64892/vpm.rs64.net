@@ -38,13 +38,13 @@ jobs:
             {
               if (asset.name.startsWith("tex-trans-tool-"))
               {
-                TTTZipURL = asset.browser_download_url
+                TTTZipURL = asset.browser_download_url.substring(1, asset.browser_download_url.length - 1)
               }
             }
 
             TTTZipURL.
 
-            return TTTZipURL.substring(1,TTTZipURL.length - 1)
+            return TTTZipURL
 
       - name: GetPackege.json
         uses: actions/checkout@v4
