@@ -63,8 +63,8 @@ jobs:
           ls -alh ./VpmRepo
       - name: moveVar
         run: |
-          packagedotjson = ${cat ./TTT/package.json}
-          vpmdotjson = ${cat ./VpmRepo/vpm.json}
+          packagedotjson = `cat ./TTT/package.json`
+          vpmdotjson = `cat ./VpmRepo/vpm.json`
       - name: GenereateURLReplasedJson
         id: NewJson
         uses: actions/github-script@v6
