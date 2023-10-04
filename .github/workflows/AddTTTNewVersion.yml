@@ -48,7 +48,7 @@ jobs:
           repository: ReinaS-64892/TexTransTool
           path: ./TTT
           ref: ${{ github.event.inputs.tag }}
-          sparse-checkout: ./package.json
+          sparse-checkout: package.json
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
