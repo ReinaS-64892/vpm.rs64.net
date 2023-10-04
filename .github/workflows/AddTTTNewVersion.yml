@@ -41,7 +41,7 @@ jobs:
               }
             }
 
-            retune TTTZipURL
+            return TTTZipURL
       - name: GetPackege.json
         uses: actions/checkout@v4
         with:
