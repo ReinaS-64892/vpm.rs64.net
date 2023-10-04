@@ -32,16 +32,17 @@ jobs:
             let packageDotJsonURL = null;
             let TTTZipJsonURL = null;
 
-            for (const asset of JSON.parse(InputStr)){
+            for (const asset of JSON.parse(InputStr))
+            {
               console.log(asset.name)
               if(asset.name == "package.json")
               {
                 packageDotJsonURL = asset.browser_download_url;
               }
-              else if(String.prototype.startsWith(asset.name , "tex-trans-tool-")){
-                
+              else if (asset.name.startsWith("tex-trans-tool-"))
+              {
+                TTTZipJsonURL = asset.browser_download_url
               }
-
 
             }
 
