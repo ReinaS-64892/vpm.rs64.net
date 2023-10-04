@@ -55,7 +55,6 @@ jobs:
           path: ./VpmRepo
       - name: Debug
         run: |
-          cat ${{ steps.TTTZipURL.outputs.result }}
           pwd
           ls -alh
           ls -alh ./TTT
