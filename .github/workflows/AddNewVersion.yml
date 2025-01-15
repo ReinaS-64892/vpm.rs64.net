@@ -59,7 +59,7 @@ jobs:
           script: |
             const mod = await import("${{ github.workspace }}/.github/workflows/JsScripts/GetPackageDotJson.mjs");
             console.log(mod);
-            return await mod();
+            return await mod.Func();
 
 
       - name: Debug

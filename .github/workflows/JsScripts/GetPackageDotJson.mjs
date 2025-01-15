@@ -1,4 +1,4 @@
-export default async function Func() {
+export async function Func() {
     const { Assets } = process.env;
 
     for (const asset of JSON.parse(Assets)) {
