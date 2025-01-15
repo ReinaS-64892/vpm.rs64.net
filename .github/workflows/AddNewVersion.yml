@@ -56,7 +56,9 @@ jobs:
           Assets: ${{ steps.ReleaseData.outputs.assets }}
         with:
           result-encoding: string
-          script: require(".github/workflows/JsScripts/GetPackageDotJson.mjs")
+          script: |
+            import(".github/workflows/JsScripts/GetPackageDotJson.mjs")
+            
 
       - name: Debug
         run: |
