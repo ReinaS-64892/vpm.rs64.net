@@ -57,8 +57,9 @@ jobs:
         with:
           result-encoding: string
           script: |
-            import(".github/workflows/JsScripts/GetPackageDotJson.mjs")
-            
+            const func = import(".github/workflows/JsScripts/GetPackageDotJson.mjs");
+            func();
+
 
       - name: Debug
         run: |
