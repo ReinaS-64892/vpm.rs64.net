@@ -57,7 +57,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const mod = import("${{ github.workspace }}/.github/workflows/JsScripts/GetPackageDotJson.mjs");
+            const mod = await import("${{ github.workspace }}/.github/workflows/JsScripts/GetPackageDotJson.mjs");
             console.log(mod);
             mod.Func();
 
