@@ -48,8 +48,8 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const { Func } = require(".github/workflows/JsScripts/GetZipURL.js");
-            return Func();
+            const mod = await import("${{ github.workspace }}/.github/workflows/JsScripts/GetZipURL.js");
+            return mod.Func();
 
       - name: GetPackageDotJson
         id: PackageDotJson
@@ -60,7 +60,6 @@ jobs:
           result-encoding: string
           script: |
             const mod = await import("${{ github.workspace }}/.github/workflows/JsScripts/GetPackageDotJson.mjs");
-            console.log(mod);
             return await mod.Func();
 
 
@@ -82,8 +81,8 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const { Func } = require(".github/workflows/JsScripts/ReplacePackageURL.js");
-            return Func();
+            const mod = await import("${{ github.workspace }}/.github/workflows/JsScripts/ReplacePackageURL.js");
+            return mod.Func();
 
       - name: AddVPMDotJson
         id: AddedVPMDotJson
@@ -94,8 +93,8 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const { Func } = require(".github/workflows/JsScripts/AddToVPMRepo.js");
-            return Func();
+            const mod = await import("${{ github.workspace }}/.github/workflows/JsScripts/AddToVPMRepo.js");
+            return mod.Func();
 
 
       - name: Write Json
