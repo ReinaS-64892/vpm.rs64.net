@@ -1,16 +1,13 @@
-const { Assets, Tag } = process.env
+export function Func() {
+    const { Assets, Tag } = process.env
+    const zipEndName = Tag + ".zip"
 
-const zipEndName = Tag + ".zip"
-
-console.log(zipEndName);
-
-for (const asset of JSON.parse(Assets)) {
-    if (asset.name.endsWith(zipEndName)) {
-        console.log(asset.browser_download_url);
-        return asset.browser_download_url;
+    for (const asset of JSON.parse(Assets)) {
+        if (asset.name.endsWith(zipEndName)) {
+            return asset.browser_download_url;
+        }
     }
 }
-
 /**
  * assets: [
  *  {
