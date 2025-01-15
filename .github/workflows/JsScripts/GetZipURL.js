@@ -6,6 +6,7 @@ console.log(zipEndName);
 
 for (const asset of JSON.parse(Assets)) {
     if (asset.name.endsWith(zipEndName)) {
+        console.log(asset.browser_download_url);
         return asset.browser_download_url;
     }
 }
