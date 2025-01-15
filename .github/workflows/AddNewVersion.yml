@@ -47,7 +47,7 @@ jobs:
           Tag: ${{ github.event.inputs.tag }}
         with:
           result-encoding: string
-          script: require(".github/workflows/JsScripts/GetZipURL.js")
+          script: return require(".github/workflows/JsScripts/GetZipURL.js");
 
       - name: GetPackageDotJson
         id: PackageDotJson
@@ -63,9 +63,12 @@ jobs:
 
 
       - name: Debug
+        env:
+          ZIP_URL: ${{ steps.ZipURL.outputs.result }}
+          PACKAGE_JSON: ${{ steps.PackageDotJson.outputs.result }}
         run: |
-          echo ${{ steps.ZipURL.outputs.result }}
-          echo ${{ steps.PackageDotJson.outputs.result }}
+          echo $ZIP_URL
+          echo $PACKAGE_JSON
 
 
       - name: ReplacePackageURL
@@ -76,7 +79,7 @@ jobs:
           ReplaceURL: ${{ steps.ZipURL.outputs.result }}
         with:
           result-encoding: string
-          script: require(".github/workflows/JsScripts/ReplacePackageURL.js")
+          script: return require(".github/workflows/JsScripts/ReplacePackageURL.js");
 
       - name: AddVPMDotJson
         id: AddedVPMDotJson
@@ -86,18 +89,23 @@ jobs:
           AddPackageJson: ${{ steps.ReplacedPackageJson.outputs.result }}
         with:
           result-encoding: string
-          script: require(".github/workflows/JsScripts/AddToVPMRepo.js")
+          script: return require(".github/workflows/JsScripts/AddToVPMRepo.js");
 
 
       - name: Write Json
+        env:
+          VPM_JSON: ${{ steps.AddedVPMDotJson.outputs.result }}
         run: |
           rm  ./vpm.json
-          echo ${{ steps.AddedVPMDotJson.outputs.result }} >> ./vpm.json
+          echo $VPM_JSON >> ./vpm.json
 
       - name: git commit
+        env:
+          REPO: ${{ github.event.inputs.repository }}
+          TAG: ${{ github.event.inputs.tag }}
         run: |
           git config user.name  "GitHub Action"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ./vpm.json
-          git commit -m "Add ${{ github.event.inputs.repository }} New Version ${{ github.event.inputs.tag }}!"
+          git commit -m "Add $REPO New Version $TAG!"
           git push origin
