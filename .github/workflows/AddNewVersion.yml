@@ -22,13 +22,11 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
-        with:
-          path: ./VpmRepo
 
       - name: MoveToVar
         id: VPMRepoJson
         run: |
-          Temp=`cat ./VpmRepo/vpm.json`
+          Temp=`cat ./vpm.json`
           echo 'result=' $Temp >> "$GITHUB_OUTPUT"
 
 
@@ -89,12 +87,11 @@ jobs:
 
       - name: Write Json
         run: |
-          rm  ./VpmRepo/vpm.json
-          echo ${{ steps.AddedVPMDotJson.outputs.result }} >> ./VpmRepo/vpm.json
+          rm  ./vpm.json
+          echo ${{ steps.AddedVPMDotJson.outputs.result }} >> ./vpm.json
 
       - name: git commit
         run: |
-          cd ./VpmRepo
           git config user.name  "GitHub Action"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ./vpm.json
