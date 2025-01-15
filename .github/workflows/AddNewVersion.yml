@@ -49,7 +49,7 @@ jobs:
           Tag: ${{ github.event.inputs.tag }}
         with:
           result-encoding: string
-          script: require(".github\workflows\JsScripts\GetZipURL.js")
+          script: require(".github/workflows/JsScripts/GetZipURL.js")
 
       - name: GetPackageDotJson
         id: PackageDotJson
@@ -58,7 +58,7 @@ jobs:
           Assets: ${{ steps.ReleaseData.outputs.assets }}
         with:
           result-encoding: string
-          script: require(".github\workflows\JsScripts\GetPackageDotJson.js")
+          script: require(".github/workflows/JsScripts/GetPackageDotJson.js")
 
       - name: Debug
         run: |
@@ -74,7 +74,7 @@ jobs:
           ReplaceURL: ${{ steps.ZipURL.outputs.result }}
         with:
           result-encoding: string
-          script: require(".github\workflows\JsScripts\ReplacePackageURL.js")
+          script: require(".github/workflows/JsScripts/ReplacePackageURL.js")
 
       - name: AddVPMDotJson
         id: AddedVPMDotJson
@@ -84,7 +84,7 @@ jobs:
           AddPackageJson: ${{ steps.ReplacedPackageJson.outputs.result }}
         with:
           result-encoding: string
-          script: require(".github\workflows\JsScripts\AddToVPMRepo.js")
+          script: require(".github/workflows/JsScripts/AddToVPMRepo.js")
 
 
       - name: Write Json
