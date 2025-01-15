@@ -102,7 +102,7 @@ jobs:
           VPM_JSON: ${{ steps.AddedVPMDotJson.outputs.result }}
         run: |
           rm  ./vpm.json
-          echo $VPM_JSON >> ./vpm.json
+          echo "$VPM_JSON" >> ./vpm.json
 
       - name: git commit
         env:
