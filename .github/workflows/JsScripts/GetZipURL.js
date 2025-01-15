@@ -2,6 +2,8 @@ const { Assets, Tag } = process.env
 
 const zipEndName = Tag + ".zip"
 
+console.log(zipEndName);
+
 for (const asset of JSON.parse(Assets)) {
     if (asset.name.endsWith(zipEndName)) {
         return asset.browser_download_url;
