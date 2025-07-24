@@ -37,14 +37,6 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-
-      - name: MoveToVar
-        id: VPMRepoJson
-        run: |
-          Temp=`cat ./vpm.json`
-          echo 'result=' $Temp >> "$GITHUB_OUTPUT"
-
-
       - name: Get NewVersion Data
         id: ReleaseData
         uses: cardinalby/git-get-release-action@v1
@@ -54,70 +46,14 @@ jobs:
           repo: ReinaS-64892/${{ inputs.repository }}
           tag: ${{ inputs.tag }}
 
-      - name: Get ZipURL
-        id: ZipURL
-        uses: actions/github-script@v7
+      - name: AddToVPMDotJson
+        id: AddToVPMDotJson
         env:
           Assets: ${{ steps.ReleaseData.outputs.assets }}
           Tag: ${{ inputs.tag }}
-        with:
-          result-encoding: string
-          script: |
-            const mod = await import("${{ github.workspace }}/.github/workflows/JsScripts/GetZipURL.mjs");
-            return mod.Func();
-
-      - name: GetPackageDotJson
-        id: PackageDotJson
-        uses: actions/github-script@v7
-        env:
-          Assets: ${{ steps.ReleaseData.outputs.assets }}
-        with:
-          result-encoding: string
-          script: |
-            const mod = await import("${{ github.workspace }}/.github/workflows/JsScripts/GetPackageDotJson.mjs");
-            return await mod.Func();
-
-
-      - name: Debug
-        env:
-          ZIP_URL: ${{ steps.ZipURL.outputs.result }}
-          PACKAGE_JSON: ${{ steps.PackageDotJson.outputs.result }}
         run: |
-          echo $ZIP_URL
-          echo $PACKAGE_JSON
-
-
-      - name: ReplacePackageURL
-        id: ReplacedPackageJson
-        uses: actions/github-script@v7
-        env:
-          PackageJson: ${{ steps.PackageDotJson.outputs.result }}
-          ReplaceURL: ${{ steps.ZipURL.outputs.result }}
-        with:
-          result-encoding: string
-          script: |
-            const mod = await import("${{ github.workspace }}/.github/workflows/JsScripts/ReplacePackageURL.mjs");
-            return mod.Func();
-
-      - name: AddVPMDotJson
-        id: AddedVPMDotJson
-        uses: actions/github-script@v7
-        env:
-          VPMRepoJson: ${{ steps.VPMRepoJson.outputs.result }}
-          AddPackageJson: ${{ steps.ReplacedPackageJson.outputs.result }}
-        with:
-          result-encoding: string
-          script: |
-            const mod = await import("${{ github.workspace }}/.github/workflows/JsScripts/AddToVPMRepo.mjs");
-            return mod.Func();
-
-
-      - name: Write Json
-        env:
-          VPM_JSON: ${{ steps.AddedVPMDotJson.outputs.result }}
-        run: |
-          rm  ./vpm.json
-          echo "$VPM_JSON" >> ./vpm.json
+          cd .github/workflows/AddPackageToRepo
+          dotnet run ../../../vpm.json
 
       - name: git commit
         env:
