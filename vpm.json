@@ -3414,6 +3414,19 @@
           },
           "url": "https://github.com/ReinaS-64892/TexTransCore/releases/download/v0.3.0-beta.0/tex-trans-core-v0.3.0-beta.0.zip",
           "repo": "https://vpm.rs64.net/vpm.json"
+        },
+        "0.3.0-beta.1": {
+          "name": "net.rs64.tex-trans-core",
+          "displayName": "TexTransCore",
+          "version": "0.3.0-beta.1",
+          "unity": "2022.3",
+          "description": "C# generic core library for TexTransTool",
+          "author": {
+            "name": "ReinaSakiria",
+            "url": "https://rs64.net/"
+          },
+          "url": "https://github.com/ReinaS-64892/TexTransCore/releases/download/v0.3.0-beta.1/tex-trans-core-v0.3.0-beta.1.zip",
+          "repo": "https://vpm.rs64.net/vpm.json"
         }
       }
     },
