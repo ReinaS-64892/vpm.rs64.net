@@ -3657,7 +3657,22 @@
       }
     },
     "net.rs64.reina-sakiria-s-component-dictionary": {
-      "versions": {}
+      "versions": {
+        "1.0.0": {
+          "name": "net.rs64.reina-sakiria-s-component-dictionary",
+          "displayName": "ReinaSakiria's ComponentDictionary",
+          "version": "1.0.0",
+          "license": "MIT",
+          "unity": "2022.3",
+          "description": "Reina_Sakiria による Reina_Sakiria のための Component の辞書",
+          "vpmDependencies": {},
+          "url": "https://github.com/ReinaS-64892/ReinaSakiria-s-Component-Dictionary/releases/download/v1.0.0/reina-sakiria-s-component-dictionary-v1.0.0.zip",
+          "author": {
+            "name": "ReinaSakiria",
+            "url": "https://rs64.net/"
+          }
+        }
+      }
     }
   },
   "author": "ReinaSakiria",
