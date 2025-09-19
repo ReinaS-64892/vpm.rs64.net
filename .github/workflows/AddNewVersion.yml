@@ -25,6 +25,7 @@ on:
           - TTT-WorldExtension
           - ReinaS-lilToonNDMFUtility
           - TTCE-Wgpu
+          - ReinaSakiria-s-Component-Dictionary
       tag:
         type: string
         required: true
