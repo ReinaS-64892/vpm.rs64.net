@@ -26,6 +26,8 @@ on:
           - ReinaS-lilToonNDMFUtility
           - TTCE-Wgpu
           - ReinaSakiria-s-Component-Dictionary
+          - TTT-ClipImporter
+
       tag:
         type: string
         required: true

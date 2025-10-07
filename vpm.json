@@ -3745,6 +3745,9 @@
           "unity": "2021.2"
         }
       }
+    },
+    "net.rs64.ttt-clip-importer": {
+      "versions": {}
     }
   },
   "author": "ReinaSakiria",
